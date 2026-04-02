@@ -260,9 +260,9 @@
   /* 整体进度（横向紧凑布局） */
   .progress-overview { flex-shrink:0; min-height:200px; height:200px; overflow:hidden; }
   .progress-row {
-    display: flex; align-items: center; gap: 16px;
+    display: flex; align-items: stretch; gap: 16px;
   }
-  .ring-wrap { position:relative;width:100px;height:100px;flex-shrink:0; }
+  .ring-wrap { position:relative;width:100px;height:100px;flex-shrink:0;align-self:center; }
   .ring-wrap svg { transform:rotate(-90deg);width:100%;height:100%; }
   .ring-bg { fill:none;stroke:rgba(0,240,255,.08);stroke-width:6; }
   .ring-bar { fill:none;stroke:url(#progressGrad);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 6px rgba(0,240,255,0.5)); }
@@ -275,10 +275,10 @@
     font-family: 'JetBrains Mono', monospace;
   }
   .ring-sub { font-size:11px;color:var(--text-dim); letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
-  .stats-col { flex:1; display:flex; flex-direction:column; gap:8px; }
+  .stats-col { flex:1; display:flex; flex-direction:column; gap:5px; justify-content:center; }
   .stat-item { 
     display:flex;align-items:center;justify-content:space-between;
-    padding:8px 12px;
+    padding:5px 10px;
     background:rgba(0,240,255,0.02);
     border:1px solid rgba(0,240,255,0.06);
     border-radius:3px; 
@@ -290,7 +290,7 @@
     border-color: rgba(0,240,255,0.1);
     box-shadow: 0 0 10px rgba(0,240,255,0.08);
   }
-  .stat-num { font-size:20px;font-weight:700;line-height:1;font-family:'JetBrains Mono',monospace; }
+  .stat-num { font-size:17px;font-weight:700;line-height:1;font-family:'JetBrains Mono',monospace; }
   .stat-num.green{
     color: var(--green);
     text-shadow: 0 0 10px rgba(0,255,136,0.6);
@@ -300,7 +300,7 @@
     text-shadow: 0 0 10px rgba(0,240,255,0.6);
   } 
   .stat-num.gray{color:var(--text-dim)}
-  .stat-label { font-size:12px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase; }
+  .stat-label { font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase; }
   .mini-bar-row { display:flex;flex-direction:column;gap:6px; }
   .mini-progress-bar { height:4px;background:rgba(0,240,255,.08);border-radius:0;overflow:hidden; }
   .mini-progress-fill { 
@@ -351,23 +351,28 @@
   .lesson-header:hover{background:rgba(0,240,255,.04)}
   .lesson-item.expanded .lesson-header{background:rgba(0,240,255,.06);}
   .lesson-item.current-lesson .lesson-header{background:rgba(0,240,255,.08);border-left:2px solid var(--neon);}
+  .lesson-item.linked-target .lesson-header{background:rgba(0,240,255,.12);border-left:2px solid var(--neon);box-shadow:inset 0 0 0 1px rgba(0,240,255,.18),0 0 18px rgba(0,240,255,.12);}
   .lesson-dot { width:10px;height:10px;border-radius:0;flex-shrink:0;box-shadow:0 0 8px currentColor;margin-top:1px; }
+
   .lesson-dot.done{background:var(--green);color:var(--green);transform:rotate(45deg);}
-  .lesson-dot.partial{background:var(--neon);color:var(--neon)}
+  .lesson-dot.studied{background:var(--neon);color:var(--neon)}
+  .lesson-dot.review{background:var(--yellow);color:var(--yellow);box-shadow:0 0 8px var(--yellow);}
+  .lesson-dot.partial{background:var(--yellow);color:var(--yellow);box-shadow:0 0 8px var(--yellow);}
   .lesson-dot.todo{background:transparent;border:1px solid var(--text-dim);box-shadow:none}
   .lesson-dot.current{background:var(--neon);color:var(--neon);animation:dot-pulse 1s ease-in-out infinite}
   @keyframes dot-pulse{0%,100%{box-shadow:0 0 5px var(--neon)}50%{box-shadow:0 0 15px var(--neon),0 0 25px rgba(0,240,255,0.5)}}
   .lesson-info{flex:1;min-width:0;}
   .lesson-num{font-size:12px;color:var(--text-dim);letter-spacing:1px;margin-bottom:3px;font-family:'JetBrains Mono',monospace;}
   .lesson-num::before{content:'#';color:var(--neon2);}
-  .lesson-title{font-size:15px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;}
+  .lesson-title{font-size:15px;font-weight:500;color:rgba(224,232,255,.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;text-shadow:0 0 8px rgba(224,232,255,.06);}
   .lesson-item.done-lesson .lesson-title{color:var(--green);opacity:0.8;}
-  .lesson-item.todo-lesson .lesson-title{color:var(--text-dim)}
+  .lesson-item.todo-lesson .lesson-title{color:rgba(224,232,255,.72)}
   .lesson-item.current-lesson .lesson-title{color:var(--neon);text-shadow:0 0 10px rgba(0,240,255,0.5);}
   .lesson-date{font-size:12px;color:var(--text-dim);margin-top:3px;font-family:'JetBrains Mono',monospace;}
   .lesson-badge{font-size:11px;padding:3px 8px;border-radius:2px;flex-shrink:0;font-family:'JetBrains Mono',monospace;letter-spacing:1px;}
   .badge-done{background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.3)}
   .badge-partial{background:rgba(0,240,255,.1);color:var(--neon);border:1px solid rgba(0,240,255,.3)}
+  .badge-review{background:rgba(255,238,0,.08);color:var(--yellow);border:1px solid rgba(255,238,0,.3)}
   .badge-current{background:rgba(0,240,255,.15);color:var(--neon);border:1px solid var(--neon);animation:badge-glow 1.5s ease-in-out infinite}
   .badge-todo{background:transparent;color:var(--text-dim);border:1px solid rgba(90,96,112,.3)}
   @keyframes badge-glow{0%,100%{box-shadow:0 0 5px rgba(0,240,255,.3)}50%{box-shadow:0 0 15px rgba(0,240,255,.6)}}
@@ -391,16 +396,25 @@
     user-select:none;
   }
   .kp-item:hover{background:rgba(0,240,255,.05);border-color:rgba(0,240,255,.1);}
+  .kp-item.linked-kp-target{background:rgba(0,240,255,.08);border-color:rgba(0,240,255,.22);box-shadow:0 0 12px rgba(0,240,255,.10);}
   .kp-dot { width:8px;height:8px;border-radius:0;flex-shrink:0;border:1px solid; transition:all .2s; }
+
   .kp-dot.done{background:var(--green);border-color:var(--green);box-shadow:0 0 5px var(--green);transform:rotate(45deg);}
-  .kp-dot.partial{background:var(--neon);border-color:var(--neon);box-shadow:0 0 5px var(--neon);}
+  .kp-dot.studied{background:var(--neon);border-color:var(--neon);box-shadow:0 0 5px var(--neon);}
+  .kp-dot.review{background:var(--yellow);border-color:var(--yellow);box-shadow:0 0 5px var(--yellow);}
+  .kp-dot.partial{background:var(--yellow);border-color:var(--yellow);box-shadow:0 0 5px var(--yellow);}
   .kp-dot.todo{background:transparent;border-color:var(--text-dim);}
-  .kp-text.done{color:var(--green);opacity:0.7;}
-  .kp-text.partial{color:var(--neon)}
-  .kp-text.todo{color:rgba(192,184,208,.32)}
+  .kp-text{flex:1;min-width:0;line-height:1.5;color:rgba(224,232,255,.82);text-shadow:0 0 6px rgba(224,232,255,.04);}
+  .kp-text.done{color:var(--green);opacity:0.88;}
+  .kp-text.studied{color:var(--neon);text-shadow:0 0 8px rgba(0,240,255,.12)}
+  .kp-text.review{color:var(--yellow);text-shadow:0 0 8px rgba(255,238,0,.10)}
+  .kp-text.partial{color:var(--yellow);text-shadow:0 0 8px rgba(255,238,0,.10)}
+  .kp-text.todo{color:rgba(224,232,255,.68)}
   .kp-badge{margin-left:auto;font-size:12px;padding:3px 8px;border-radius:2px;flex-shrink:0;width:70px;text-align:center;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%2300f0ff' d='M1 3l4 4 4-4H1z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;padding-right:16px;color:#fff;font-family:'JetBrains Mono',monospace;}
   .kp-badge.done{background-color:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.3);}
-  .kp-badge.partial{background-color:rgba(0,240,255,.1);color:var(--neon);border:1px solid rgba(0,240,255,.3);}
+  .kp-badge.studied{background-color:rgba(0,240,255,.1);color:var(--neon);border:1px solid rgba(0,240,255,.3);}
+  .kp-badge.review{background-color:rgba(255,238,0,.08);color:var(--yellow);border:1px solid rgba(255,238,0,.3);}
+  .kp-badge.partial{background-color:rgba(255,238,0,.08);color:var(--yellow);border:1px solid rgba(255,238,0,.3);}
   .kp-badge.todo{background-color:transparent;color:var(--text-dim);border:1px solid rgba(90,96,112,.3);}
   .kp-badge::-ms-expand{display:none}
   .kp-badge option{background:var(--bg);color:var(--text);}
@@ -418,15 +432,18 @@
   .next-content-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,240,255,.2) transparent;}
   .next-content-list::-webkit-scrollbar{width:2px}
   .next-content-list::-webkit-scrollbar-thumb{background:rgba(0,240,255,.2);border-radius:0}
-  .next-content-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(0,240,255,.05);font-size:13px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;}
+  .next-content-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(0,240,255,.05);font-size:13px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;transition:all .2s ease;}
+  .next-content-item.jumpable{cursor:pointer;}
+  .next-content-item.jumpable:hover{color:rgba(224,232,255,.9);text-shadow:0 0 8px rgba(0,240,255,.15);transform:translateX(2px);}
   .next-content-item::before{content:'>';color:var(--neon);font-size:12px;flex-shrink:0;}
 .danger-card{flex:1;min-height:80px;overflow:hidden;}
-.danger-list{display:flex;flex-direction:column;gap:6px;overflow-y:auto;max-height:100%;scrollbar-width:thin;scrollbar-color:rgba(255,0,68,0.15) transparent;}
+.danger-list{display:flex;flex-direction:column;gap:6px;overflow-y:auto;max-height:100%;scrollbar-width:thin;scrollbar-color:rgba(255,238,0,0.15) transparent;}
 .danger-list::-webkit-scrollbar{width:2px}
-.danger-list::-webkit-scrollbar-thumb{background:rgba(255,0,68,0.15);border-radius:0}
-  .danger-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,0,68,.03);border:1px solid rgba(255,0,68,.15);border-radius:3px;font-size:13px;color:rgba(255,100,100,.8);transition: all 0.2s ease;font-family:'JetBrains Mono',monospace;}
-  .danger-item:hover{background:rgba(255,0,68,.06);border-color: rgba(255,0,68,.25);box-shadow:0 0 10px rgba(255,0,68,.15);}
-  .danger-icon{font-size:12px;flex-shrink:0;color:var(--red);}
+.danger-list::-webkit-scrollbar-thumb{background:rgba(255,238,0,0.15);border-radius:0}
+  .danger-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,238,0,.03);border:1px solid rgba(255,238,0,.15);border-radius:3px;font-size:13px;color:rgba(255,238,0,.75);transition: all 0.2s ease;font-family:'JetBrains Mono',monospace;}
+  .danger-item.jumpable{cursor:pointer;}
+  .danger-item.jumpable:hover{background:rgba(255,238,0,.06);border-color: rgba(255,238,0,.28);box-shadow:0 0 10px rgba(255,238,0,.12);transform:translateX(2px);}
+  .danger-icon{font-size:12px;flex-shrink:0;color:var(--yellow);}
 
   /* 保存按钮 */
   .save-bar {
@@ -610,7 +627,11 @@
               <div class="stat-num green" id="stat-done">0</div>
             </div>
             <div class="stat-item">
-              <div class="stat-label">⚠ 有难点</div>
+              <div class="stat-label">◈ 待练习</div>
+              <div class="stat-num" style="color:var(--neon);text-shadow:0 0 10px rgba(0,240,255,0.6);" id="stat-studied">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">⚠ 待复习</div>
               <div class="stat-num yellow" id="stat-partial">0</div>
             </div>
             <div class="stat-item">
@@ -644,7 +665,7 @@
     <!-- 中间栏：可操作课程列表 -->
     <div class="center-panel">
       <div class="card timeline-card">
-        <div class="card-title">学习时间线 <span style="font-size:9px;color:rgba(245,200,66,.3);font-weight:400;letter-spacing:0;margin-left:4px;">▸ 点击课次展开 · 点击知识点切换状态</span></div>
+        <div class="card-title">学习时间线 <span style="font-size:9px;color:rgba(0,240,255,.55);font-weight:400;letter-spacing:0;margin-left:4px;">▸ 点击课次展开 · 用下拉框选择状态</span></div>
         <div class="timeline-scroll" id="timeline-list"></div>
       </div>
     </div>
@@ -662,9 +683,9 @@
         <div class="next-content-list" id="next-content-list"></div>
       </div>
 
-      <!-- 难点预警 -->
+      <!-- 待复习清单 -->
       <div class="card danger-card">
-        <div class="card-title">难点预警</div>
+        <div class="card-title">待复习清单</div>
         <div class="danger-list" id="danger-list"></div>
       </div>
     </div>
@@ -732,13 +753,19 @@ function loadProgress() {
     if (saved) {
       const parsed = JSON.parse(saved);
       // 合并：以保存的 status 为准，其他字段用默认值
+      // 同时兼容旧数据：将 partial 迁移为 review
       return rawDataDefault.map(def => {
         const s = parsed.find(p => p.id === def.id);
-        return s ? { ...def, status: s.status } : { ...def };
+        if (s) {
+          const migratedStatus = s.status.map(st => st === 'partial' ? 'review' : st);
+          return { ...def, status: migratedStatus };
+        }
+        return { ...def };
       });
     }
   } catch(e) {}
-  return rawDataDefault.map(d => ({ ...d, status: [...d.status] }));
+  // 默认数据也做迁移（rawDataDefault 里有 partial 的）
+  return rawDataDefault.map(d => ({ ...d, status: d.status.map(st => st === 'partial' ? 'review' : st) }));
 }
 
 function saveProgress() {
@@ -782,7 +809,10 @@ function getLessonStatus(lesson) {
   const s = lesson.status;
   if (s.every(x => x === 'done')) return 'done';
   if (s.every(x => x === 'todo')) return 'todo';
-  return 'partial';
+  // 若有 review/partial 则显示 review
+  if (s.some(x => x === 'review' || x === 'partial')) return 'review';
+  // 否则（混合了 done/studied/todo）显示 studied
+  return 'studied';
 }
 
 function getCurrentLesson() {
@@ -794,13 +824,14 @@ function getCurrentLesson() {
 }
 
 function cycleStatus(s) {
-  // todo → done → partial → todo
+  // todo → done → studied → review → todo
   if (s === 'todo') return 'done';
-  if (s === 'done') return 'partial';
+  if (s === 'done') return 'studied';
+  if (s === 'studied') return 'review';
   return 'todo';
 }
 
-const statusLabel = { done: '已完成', partial: '难点', todo: '待学习' };
+const statusLabel = { done: '已完成', studied: '待练习', review: '待复习', partial: '待复习', todo: '待学习' };
 const chapterColors = {
   '导学':'#00f0ff','计算机基础':'#0080ff','操作系统':'#7000ff',
   '程序语言':'#00ff88','数据结构':'#00a0ff','网络与安全':'#ff0044',
@@ -810,17 +841,18 @@ const chapterColors = {
 
 // ========== 统计 ==========
 function calcStats() {
-  let total=0, done=0, partial=0, todo=0;
+  let total=0, done=0, studied=0, review=0, todo=0;
   rawData.forEach(l => {
     l.status.forEach(s => {
       total++;
       if(s==='done') done++;
-      else if(s==='partial') partial++;
+      else if(s==='studied') studied++;
+      else if(s==='review'||s==='partial') review++;
       else todo++;
     });
   });
-  const pct = Math.round((done + partial) / total * 100);
-  return { total, done, partial, todo, pct };
+  const pct = Math.round((done + studied + review) / total * 100);
+  return { total, done, studied, review, todo, pct };
 }
 
 function calcChapterStats() {
@@ -829,7 +861,7 @@ function calcChapterStats() {
     if(!map[l.chapter]) map[l.chapter]={ total:0, done:0 };
     l.status.forEach(s => {
       map[l.chapter].total++;
-      if(s==='done'||s==='partial') map[l.chapter].done++;
+      if(s==='done'||s==='studied'||s==='review'||s==='partial') map[l.chapter].done++;
     });
   });
   return map;
@@ -840,7 +872,8 @@ function renderStats() {
   const st = calcStats();
   document.getElementById('overall-pct').textContent = st.pct + '%';
   document.getElementById('stat-done').textContent = st.done;
-  document.getElementById('stat-partial').textContent = st.partial;
+  document.getElementById('stat-studied').textContent = st.studied;
+  document.getElementById('stat-partial').textContent = st.review;
   document.getElementById('stat-todo').textContent = st.todo;
   document.getElementById('stat-total').textContent = st.total;
   document.getElementById('stat-lessons').textContent = rawData.length;
@@ -883,10 +916,11 @@ function renderTimeline() {
   rawData.forEach(lesson => {
     const ls = getLessonStatus(lesson);
     const isCurrent = lesson.id === currentLesson.id;
-    const dotClass = isCurrent ? 'current' : ls === 'done' ? 'done' : ls === 'partial' ? 'partial' : 'todo';
-    const badgeClass = isCurrent ? 'badge-current' : ls === 'done' ? 'badge-done' : ls === 'partial' ? 'badge-partial' : 'badge-todo';
-    const badgeText = isCurrent ? '当前' : ls === 'done' ? '已完成' : ls === 'partial' ? '复习中' : '待学习';
+    const dotClass = isCurrent ? 'current' : ls === 'done' ? 'done' : ls === 'studied' ? 'studied' : ls === 'review' ? 'review' : 'todo';
+    const badgeClass = isCurrent ? 'badge-current' : ls === 'done' ? 'badge-done' : ls === 'studied' ? 'badge-partial' : ls === 'review' ? 'badge-review' : 'badge-todo';
+    const badgeText = isCurrent ? '当前' : ls === 'done' ? '已完成' : ls === 'studied' ? '待练习' : ls === 'review' ? '待复习' : '待学习';
     const lessonClass = isCurrent ? 'current-lesson' : ls === 'done' ? 'done-lesson' : 'todo-lesson';
+
 
     const item = document.createElement('div');
     item.className = `lesson-item ${lessonClass}`;
@@ -902,7 +936,8 @@ function renderTimeline() {
           <select class="kp-badge ${s}" data-lid="${lesson.id}" data-idx="${i}">
             <option value="todo" ${s==='todo'?'selected':''}>待学习</option>
             <option value="done" ${s==='done'?'selected':''}>已完成</option>
-            <option value="partial" ${s==='partial'?'selected':''}>有难点</option>
+            <option value="studied" ${s==='studied'?'selected':''}>待练习</option>
+            <option value="review" ${(s==='review'||s==='partial')?'selected':''}>待复习</option>
           </select>
         </div>
       `;
@@ -920,7 +955,6 @@ function renderTimeline() {
         <div class="expand-arrow">▶</div>
       </div>
       <div class="lesson-items-panel">
-        <div class="kp-hint">点击下拉框选择状态</div>
         ${kpHTML}
       </div>
     `;
@@ -981,9 +1015,9 @@ function updateLessonItemAppearance(itemEl, lesson) {
   const ls = getLessonStatus(lesson);
   const currentLesson = getCurrentLesson();
   const isCurrent = lesson.id === currentLesson.id;
-  const dotClass = isCurrent ? 'current' : ls === 'done' ? 'done' : ls === 'partial' ? 'partial' : 'todo';
-  const badgeClass = isCurrent ? 'badge-current' : ls === 'done' ? 'badge-done' : ls === 'partial' ? 'badge-partial' : 'badge-todo';
-  const badgeText = isCurrent ? '当前' : ls === 'done' ? '已完成' : ls === 'partial' ? '复习中' : '待学习';
+  const dotClass = isCurrent ? 'current' : ls === 'done' ? 'done' : ls === 'studied' ? 'studied' : ls === 'review' ? 'review' : 'todo';
+  const badgeClass = isCurrent ? 'badge-current' : ls === 'done' ? 'badge-done' : ls === 'studied' ? 'badge-partial' : ls === 'review' ? 'badge-review' : 'badge-todo';
+  const badgeText = isCurrent ? '当前' : ls === 'done' ? '已完成' : ls === 'studied' ? '待练习' : ls === 'review' ? '待复习' : '待学习';
   const lessonClass = isCurrent ? 'current-lesson' : ls === 'done' ? 'done-lesson' : 'todo-lesson';
 
   itemEl.className = `lesson-item ${lessonClass}` + (itemEl.classList.contains('expanded') ? ' expanded' : '');
@@ -995,7 +1029,34 @@ function updateLessonItemAppearance(itemEl, lesson) {
   titleEl.style.color = '';
 }
 
+function jumpToLesson(lessonId, kpIndex = null) {
+  const timelineItem = document.querySelector(`.lesson-item[data-id="${lessonId}"]`);
+  if (!timelineItem) return;
+
+  document.querySelectorAll('.lesson-item.linked-target').forEach(el => el.classList.remove('linked-target'));
+  document.querySelectorAll('.kp-item.linked-kp-target').forEach(el => el.classList.remove('linked-kp-target'));
+
+  timelineItem.classList.add('expanded');
+  timelineItem.classList.add('linked-target');
+  timelineItem.scrollIntoView({ behavior:'smooth', block:'center' });
+
+  setTimeout(() => {
+    timelineItem.classList.remove('linked-target');
+  }, 1800);
+
+  if (kpIndex === null) return;
+
+  setTimeout(() => {
+    const kpItem = timelineItem.querySelector(`.kp-item[data-idx="${kpIndex}"]`);
+    if (!kpItem) return;
+    kpItem.classList.add('linked-kp-target');
+    kpItem.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    setTimeout(() => kpItem.classList.remove('linked-kp-target'), 1800);
+  }, 260);
+}
+
 function renderNextPlan() {
+
   const lesson = getCurrentLesson();
   document.getElementById('next-num').textContent = `第 ${String(lesson.id).padStart(2,'0')} 课（原计划：${lesson.date}）`;
   document.getElementById('next-title').textContent = lesson.title;
@@ -1005,28 +1066,39 @@ function renderNextPlan() {
   lesson.items.forEach((item, i) => {
     const s = lesson.status[i];
     const div = document.createElement('div');
-    div.className = 'next-content-item';
-    const prefix = s === 'done' ? '✓ ' : s === 'partial' ? '⚠ ' : '';
+    div.className = 'next-content-item jumpable';
+    div.dataset.lessonId = lesson.id;
+    div.dataset.idx = i;
+    const prefix = s === 'done' ? '✓ ' : s === 'studied' ? '◈ ' : (s === 'review' || s === 'partial') ? '⚠ ' : '';
     div.textContent = prefix + item;
     if(s === 'done') div.style.color = '#00ff88';
-    if(s === 'partial') div.style.color = '#00f0ff';
+    if(s === 'studied') div.style.color = '#00f0ff';
+    if(s === 'review' || s === 'partial') div.style.color = '#ffee00';
     container.appendChild(div);
   });
+
+  container.onclick = (e) => {
+    const item = e.target.closest('.next-content-item.jumpable');
+    if (!item) return;
+    jumpToLesson(Number(item.dataset.lessonId), Number(item.dataset.idx));
+  };
 }
 
 function renderDangerList() {
   const dangers = [];
   rawData.forEach(lesson => {
     lesson.items.forEach((item, i) => {
-      if(lesson.status[i] === 'partial') dangers.push({ lesson:`第${lesson.id}课`, item });
+      if(lesson.status[i] === 'review' || lesson.status[i] === 'partial') dangers.push({ lessonId: lesson.id, lesson:`第${lesson.id}课`, item, idx: i });
     });
   });
   const container = document.getElementById('danger-list');
   container.innerHTML = '';
   dangers.forEach(d => {
     const div = document.createElement('div');
-    div.className = 'danger-item';
-    div.innerHTML = `<span class="danger-icon">⚠</span><span><b style="color:rgba(255,130,130,.8);font-size:9px;">${d.lesson}</b> ${d.item}</span>`;
+    div.className = 'danger-item jumpable';
+    div.dataset.lessonId = d.lessonId;
+    div.dataset.idx = d.idx;
+    div.innerHTML = `<span class="danger-icon">⚠</span><span><b style="color:rgba(255,238,0,.7);font-size:9px;">${d.lesson}</b> ${d.item}</span>`;
     container.appendChild(div);
   });
   if(dangers.length === 0) {
@@ -1034,9 +1106,15 @@ function renderDangerList() {
     ok.className = 'danger-item';
     ok.style.borderColor = 'rgba(0,255,136,.2)';
     ok.style.background = 'rgba(0,255,136,.04)';
-    ok.innerHTML = `<span style="color:rgba(0,255,136,.6);font-size:9px;">🎉 暂无难点知识点，继续加油！</span>`;
+    ok.innerHTML = `<span style="color:rgba(0,255,136,.6);font-size:9px;">🎉 暂无待复习知识点，继续加油！</span>`;
     container.appendChild(ok);
   }
+
+  container.onclick = (e) => {
+    const item = e.target.closest('.danger-item.jumpable');
+    if (!item) return;
+    jumpToLesson(Number(item.dataset.lessonId), Number(item.dataset.idx));
+  };
 }
 
 function updateClock() {
